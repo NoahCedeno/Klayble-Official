@@ -7,14 +7,14 @@ namespace BoardSystem
     public class BoardScript : MonoBehaviour
     {
         List<GameObject> UnsortedChildren = new List<GameObject>(); // May be redundant
-        Vector2Int RootTransformOffset = new Vector2Int();
+        Vector2Int RootOffsetToOrigin = new Vector2Int();
 
         int NumRows, NumCols;
         TileScript[,] TileMap;
 
         private void Awake()
         {
-            RootTransformOffset = new Vector2Int((int)transform.position.x, (int)transform.position.z);
+            RootOffsetToOrigin = new Vector2Int((int)transform.position.x, (int)transform.position.z);
             SetupBoard();
         }
 
@@ -38,7 +38,7 @@ namespace BoardSystem
             for (int i = 0; i < transform.childCount; i++)
             {
                 Transform current = transform.GetChild(i);
-                Vector2Int currCoords = new Vector2Int((int)current.localPosition.x, (int)current.localPosition.y);
+                Vector2Int currCoords = new Vector2Int((int)current.localPosition.x, (int)current.localPosition.z);
 
                 // Find Extrema on X
                 highestLocalX = (currCoords.x > highestLocalX) ? currCoords.x : highestLocalX;
@@ -50,28 +50,31 @@ namespace BoardSystem
 
             }
 
-            // Process extrema as positive numbers for array bounds
-            NumRows = Mathf.Abs(lowestLocalX) + Mathf.Abs(highestLocalX);
-            NumCols = Mathf.Abs(lowestLocalZ) + Mathf.Abs(highestLocalZ);
+            // Define RootOffsetToOrigin
+            RootOffsetToOrigin.x = lowestLocalX;
+            RootOffsetToOrigin.y = highestLocalZ;
+
+            // Process extrema as positive numbers for array bounds, accounting for 0!
+            NumCols = Mathf.Abs(lowestLocalX) + Mathf.Abs(highestLocalX) + ((lowestLocalX < 0 && highestLocalX > 0) ? 1 : 0);
+            NumRows = Mathf.Abs(lowestLocalZ) + Mathf.Abs(highestLocalZ) + ((lowestLocalZ < 0 && highestLocalZ > 0) ? 1 : 0);
 
             TileMap = new TileScript[NumRows - 1, NumCols - 1];
         }
 
         /// <summary>
-        /// Defines our TileMap array with the TileScripts that 
+        /// Defines our TileMap array with the TileScripts on the field.
         /// </summary>
         private void DefineTileMap()
         {
             for (int i = 0; i < transform.childCount; i++)
             {
                 Transform current = transform.GetChild(i);
-                Vector2Int currCoords = new Vector2Int((int)current.localPosition.x, (int)current.localPosition.y);
+                Vector2Int currCoords = new Vector2Int((int)current.localPosition.x, (int)current.localPosition.z);
 
-                // Set the indices per Tile, not per index. Will need to check this math.
-                // This math should define the appropriate TileScript for the TileMap by using indices within the TileMap array
-                // that are 'normalized' or shifted by a local factor in relation to the root transform.
-                TileMap[Mathf.Abs(currCoords.x + RootTransformOffset.x),
-                        Mathf.Abs(currCoords.y + RootTransformOffset.y)] = current.gameObject.GetComponent<TileScript>();
+                Vector2Int currToOrigin = new Vector2Int(-currCoords.x, -currCoords.y);
+                currToOrigin += RootOffsetToOrigin;
+
+                TileMap[Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y)] = current.gameObject.GetComponent<TileScript>();
             }
 
         }
