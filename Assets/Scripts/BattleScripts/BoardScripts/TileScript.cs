@@ -4,7 +4,8 @@ namespace BoardSystem
 {
     public class TileScript : MonoBehaviour
     {
-        public TileTypes TileType; // May become an enumerated TileType at some point.
+        [SerializeField]
+        private TileTypes TileType; // May become an enumerated TileType at some point.
 
         /// <summary>
         /// Returns the location of the Tile within the Board!
@@ -33,6 +34,27 @@ namespace BoardSystem
         {
             TileType = NewTileType;
             // TODO: Redraw Tile accordingly with references to Materials somewhere
+        }
+
+        /// <summary>
+        /// Uses a Raycast, targeting only Battlefield-layer colliders (not Tile layer),
+        /// returns whatever it hits (or doesn't).
+        /// </summary>
+        /// <returns>Returns either the GameObject it hit, or null.</returns>
+        public GameObject GetGameObjectOn()
+        {
+            int battlefieldLayer = 1 << 9;
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hit, battlefieldLayer))
+            {
+                // Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * hit.distance, Color.yellow);
+                return hit.collider.gameObject;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

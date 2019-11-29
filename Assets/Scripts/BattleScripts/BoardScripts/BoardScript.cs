@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 namespace BoardSystem
 {
     public class BoardScript : MonoBehaviour
     {
-        List<GameObject> UnsortedChildren = new List<GameObject>(); // May be redundant
-        Vector2Int RootOffsetToOrigin = new Vector2Int();
-
-        int NumRows, NumCols;
-        TileScript[,] TileMap;
+        private Vector2Int RootOffsetToOrigin = new Vector2Int();
+        private int NumRows, NumCols;
+        private TileScript[,] TileMap;
 
         private void Awake()
         {
@@ -26,6 +23,7 @@ namespace BoardSystem
 
         /// <summary>
         /// Finds and uses local Tile extrema to define the bounds of the TileMap array.
+        /// As well, this function defines a few other helpful fields of my Board.
         /// </summary>
         private void CalculateTileMapBounds()
         {
@@ -47,7 +45,6 @@ namespace BoardSystem
                 // Find Extrema on Z
                 highestLocalZ = (currCoords.y > highestLocalZ) ? currCoords.y : highestLocalZ;
                 lowestLocalZ = (currCoords.y < lowestLocalZ) ? currCoords.y : lowestLocalZ;
-
             }
 
             // Define RootOffsetToOrigin
@@ -58,11 +55,16 @@ namespace BoardSystem
             NumCols = Mathf.Abs(lowestLocalX) + Mathf.Abs(highestLocalX) + ((lowestLocalX < 0 && highestLocalX > 0) ? 1 : 0);
             NumRows = Mathf.Abs(lowestLocalZ) + Mathf.Abs(highestLocalZ) + ((lowestLocalZ < 0 && highestLocalZ > 0) ? 1 : 0);
 
-            TileMap = new TileScript[NumRows - 1, NumCols - 1];
+            TileMap = new TileScript[NumCols, NumRows]; // TODO: Investigate why subtracting 1 from each generates Index Error!
+
+            // Debug.Log("NumCols: " + NumCols);
+            // Debug.Log("NumRows: " + NumRows);
+            // Debug.Log(RootOffsetToOrigin);
         }
 
         /// <summary>
-        /// Defines our TileMap array with the TileScripts on the field.
+        /// Defines our TileMap array with the TileScripts on the field by finding and utilising
+        /// vectors to the parent's origin, to the array/global origin.
         /// </summary>
         private void DefineTileMap()
         {
@@ -74,13 +76,35 @@ namespace BoardSystem
                 Vector2Int currToOrigin = new Vector2Int(-currCoords.x, -currCoords.y);
                 currToOrigin += RootOffsetToOrigin;
 
+                // Debug.Log(current.transform.gameObject.name + ": " + Mathf.Abs(currToOrigin.x) + ", " + Mathf.Abs(currToOrigin.y));
+
                 TileMap[Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y)] = current.gameObject.GetComponent<TileScript>();
             }
-
         }
 
+        /// <summary>
+        /// Returns a TileScript or null for any two coordinates within the TileMap array.
+        /// STARTS AT 0, and accounts for IndexOutOfRangeExceptions.
+        /// </summary>
+        /// <param name="col">The column index of the Tile requested.</param>
+        /// <param name="row">The row index of the Tile requested.</param>
+        /// <returns></returns>
+        public TileScript GetTileAt(int col, int row)
+        {
+            try
+            {
+                return TileMap[col, row];
+            }
+            catch (IndexOutOfRangeException) // TODO: Consider keeping exception reference for debug testing, etc?
+            {
+                Debug.Log("Indexes " + col + ", " + row + " are invalid.");
+                return null;
+            }
+        }
 
-
-
+        public void SetTileTypeAt(int col, int row, TileTypes newType)
+        {
+            GetTileAt(col, row).SetTileType(newType);
+        }
     }
 }
