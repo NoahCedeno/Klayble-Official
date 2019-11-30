@@ -21,10 +21,10 @@ namespace BoardSystem
 		/// <summary>
 		/// Used to change the type of the Tile, updating the Tile's texture and information.
 		/// </summary>
-		/// <param name="NewTileType">The desired Tile type.</param>
-		public void SetTileType(Tile NewTileType)
+		/// <param name="newTile">The desired Tile type.</param>
+		public void SetTileType(Tile newTile)
 		{
-			Tile = NewTileType;
+			Tile = newTile;
 			// TODO: Redraw Tile accordingly with references to Materials somewhere. Consider a Dictionary<Tile, TileTexture>().
 		}
 
