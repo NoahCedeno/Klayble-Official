@@ -7,9 +7,9 @@
 	/// </summary>
 	public enum Tile
 	{
-		Normal,
-		Lava,
-		Water,
-		Poison
+		Normal = 0,
+		Lava = 1,
+		Water = 2,
+		Poison = 3
 	}
 }
