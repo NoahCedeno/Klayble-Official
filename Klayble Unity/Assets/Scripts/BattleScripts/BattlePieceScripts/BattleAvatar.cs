@@ -6,6 +6,8 @@
 	/// </summary>
 	public abstract class BattleAvatar : BattlePiece
 	{
-		public int HP, Atk, Def;
+		public int HP;
+		public int Atk;
+		public int Def;
 	}
 }
