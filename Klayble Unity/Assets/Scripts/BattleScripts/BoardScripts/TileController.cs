@@ -10,10 +10,11 @@ namespace BoardSystem
 		/// <summary>
 		/// Returns the location of the Tile within the Board!
 		/// </summary>
-		/// <returns>A Vector2 of the Transform's X and Z Components.</returns>
-		public Vector2 GetLocation()
+		/// <returns>A Vector2Int of the Transform's X and Z Components.</returns>
+		public Vector2Int GetLocation()
 		{
-			return new Vector2((int) transform.position.x, (int) transform.position.z);
+			Vector3 position = transform.position;
+			return new Vector2Int((int) position.x, (int) position.z);
 		}
 
 		/// <summary>
