@@ -6,6 +6,7 @@ namespace BoardSystem
 	{
 		[SerializeField]
 		private Tile m_Tile; // May become an enumerated TileType at some point.
+		public Tile Tile { get => m_Tile; private set => m_Tile = value; }
 
 		/// <summary>
 		/// Returns the location of the Tile within the Board!
@@ -18,22 +19,12 @@ namespace BoardSystem
 		}
 
 		/// <summary>
-		/// Used in checking and applying status effects on the Board.
-		/// May return an enumerated Type.
-		/// </summary>
-		/// <returns>A String of the TileType.</returns>
-		public Tile GetTileType()
-		{
-			return m_Tile;
-		}
-
-		/// <summary>
 		/// Used to change the type of the Tile, updating the Tile's texture and information.
 		/// </summary>
 		/// <param name="NewTileType">The desired Tile type.</param>
 		public void SetTileType(Tile NewTileType)
 		{
-			m_Tile = NewTileType;
+			Tile = NewTileType;
 			// TODO: Redraw Tile accordingly with references to Materials somewhere
 		}
 
