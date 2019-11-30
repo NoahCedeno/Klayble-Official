@@ -8,6 +8,9 @@ namespace BoardSystem
 		private Tile m_Tile; // May become an enumerated TileType at some point.
 		public Tile Tile { get => m_Tile; private set => m_Tile = value; }
 
+		[SerializeField]
+		private LayerMask m_BattleFieldLayerMask;
+
 		/// <summary>
 		/// Returns the location of the Tile within the Board!
 		/// </summary>
@@ -35,10 +38,9 @@ namespace BoardSystem
 		/// <returns>Returns either the GameObject it hit, or null.</returns>
 		public GameObject GetGameObjectOn()
 		{
-			int battlefieldLayer = 1 << 9;
 			RaycastHit hit;
 
-			if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hit, battlefieldLayer))
+			if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hit, m_BattleFieldLayerMask))
 			{
 				// Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * hit.distance, Color.yellow);
 				return hit.collider.gameObject;

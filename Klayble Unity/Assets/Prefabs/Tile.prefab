@@ -106,3 +106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Tile: 0
+  m_BattleFieldLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
