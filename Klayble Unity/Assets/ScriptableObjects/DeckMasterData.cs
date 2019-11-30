@@ -30,5 +30,5 @@ public class DeckMasterData : ScriptableObject
 
 	[SerializeField]
 	private List<CardData> m_Deck;
-	public List<CardData> Deck { get => m_Deck; private set => m_Deck = value; }
+	public List<CardData> Deck { get => new List<CardData>(m_Deck); private set => m_Deck = value; }
 }

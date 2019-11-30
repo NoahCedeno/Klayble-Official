@@ -11,7 +11,7 @@ namespace BattlePieceSystem
 	{
 		[SerializeField]
 		private List<BattleCard> m_Deck;
-		public List<BattleCard> Deck { get => m_Deck; private set => m_Deck = value; }
+		public List<BattleCard> Deck { get => new List<BattleCard>(m_Deck); private set => m_Deck = value; }
 
 		[SerializeField]
 		private int m_DeckMasterId;
