@@ -5,7 +5,7 @@
 	/// Useful in drawing unique tile palettes with variance from level to level,
 	/// instead of having all sorts of generic Tile textures.
 	/// </summary>
-	public enum TileTypes
+	public enum Tile
 	{
 		Normal,
 		Lava,

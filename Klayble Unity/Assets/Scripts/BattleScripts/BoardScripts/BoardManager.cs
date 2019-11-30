@@ -102,7 +102,7 @@ namespace BoardSystem
 			}
 		}
 
-		public void SetTileTypeAt(int col, int row, TileTypes newType)
+		public void SetTileTypeAt(int col, int row, Tile newType)
 		{
 			GetTileAt(col, row).SetTileType(newType);
 		}
