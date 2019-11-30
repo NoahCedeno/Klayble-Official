@@ -5,7 +5,7 @@ namespace BoardSystem
 	public class TileController : MonoBehaviour
 	{
 		[SerializeField]
-		private Tile TileType; // May become an enumerated TileType at some point.
+		private Tile m_Tile; // May become an enumerated TileType at some point.
 
 		/// <summary>
 		/// Returns the location of the Tile within the Board!
@@ -24,7 +24,7 @@ namespace BoardSystem
 		/// <returns>A String of the TileType.</returns>
 		public Tile GetTileType()
 		{
-			return TileType;
+			return m_Tile;
 		}
 
 		/// <summary>
@@ -33,7 +33,7 @@ namespace BoardSystem
 		/// <param name="NewTileType">The desired Tile type.</param>
 		public void SetTileType(Tile NewTileType)
 		{
-			TileType = NewTileType;
+			m_Tile = NewTileType;
 			// TODO: Redraw Tile accordingly with references to Materials somewhere
 		}
 
