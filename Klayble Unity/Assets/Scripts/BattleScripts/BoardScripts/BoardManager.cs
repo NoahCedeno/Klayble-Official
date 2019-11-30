@@ -5,13 +5,13 @@ namespace BoardSystem
 {
 	public class BoardManager : MonoBehaviour
 	{
-		private Vector2Int RootOffsetToOrigin = new Vector2Int();
-		private int NumRows, NumCols;
-		private TileController[,] TileMap;
+		private Vector2Int m_RootOffsetToOrigin = new Vector2Int();
+		private int m_Rows, m_Cols;
+		private TileController[,] m_TileMap;
 
 		private void Awake()
 		{
-			RootOffsetToOrigin = new Vector2Int((int) transform.position.x, (int) transform.position.z);
+			m_RootOffsetToOrigin = new Vector2Int((int) transform.position.x, (int) transform.position.z);
 			SetupBoard();
 		}
 
@@ -48,14 +48,14 @@ namespace BoardSystem
 			}
 
 			// Define RootOffsetToOrigin
-			RootOffsetToOrigin.x = lowestLocalX;
-			RootOffsetToOrigin.y = highestLocalZ;
+			m_RootOffsetToOrigin.x = lowestLocalX;
+			m_RootOffsetToOrigin.y = highestLocalZ;
 
 			// Process extrema as positive numbers for array bounds, accounting for 0!
-			NumCols = Mathf.Abs(lowestLocalX) + Mathf.Abs(highestLocalX) + ((lowestLocalX < 0 && highestLocalX > 0) ? 1 : 0);
-			NumRows = Mathf.Abs(lowestLocalZ) + Mathf.Abs(highestLocalZ) + ((lowestLocalZ < 0 && highestLocalZ > 0) ? 1 : 0);
+			m_Cols = Mathf.Abs(lowestLocalX) + Mathf.Abs(highestLocalX) + ((lowestLocalX < 0 && highestLocalX > 0) ? 1 : 0);
+			m_Rows = Mathf.Abs(lowestLocalZ) + Mathf.Abs(highestLocalZ) + ((lowestLocalZ < 0 && highestLocalZ > 0) ? 1 : 0);
 
-			TileMap = new TileController[NumCols, NumRows]; // TODO: Investigate why subtracting 1 from each generates Index Error!
+			m_TileMap = new TileController[m_Cols, m_Rows]; // TODO: Investigate why subtracting 1 from each generates Index Error!
 
 			// Debug.Log("NumCols: " + NumCols);
 			// Debug.Log("NumRows: " + NumRows);
@@ -74,11 +74,11 @@ namespace BoardSystem
 				Vector2Int currCoords = new Vector2Int((int) current.localPosition.x, (int) current.localPosition.z);
 
 				Vector2Int currToOrigin = new Vector2Int(-currCoords.x, -currCoords.y);
-				currToOrigin += RootOffsetToOrigin;
+				currToOrigin += m_RootOffsetToOrigin;
 
 				// Debug.Log(current.transform.gameObject.name + ": " + Mathf.Abs(currToOrigin.x) + ", " + Mathf.Abs(currToOrigin.y));
 
-				TileMap[Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y)] = current.gameObject.GetComponent<TileController>();
+				m_TileMap[Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y)] = current.gameObject.GetComponent<TileController>();
 			}
 		}
 
@@ -93,7 +93,7 @@ namespace BoardSystem
 		{
 			try
 			{
-				return TileMap[col, row];
+				return m_TileMap[col, row];
 			}
 			catch (IndexOutOfRangeException) // TODO: Consider keeping exception reference for debug testing, etc?
 			{
