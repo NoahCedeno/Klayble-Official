@@ -25,7 +25,7 @@ namespace BoardSystem
 		public void SetTileType(Tile NewTileType)
 		{
 			Tile = NewTileType;
-			// TODO: Redraw Tile accordingly with references to Materials somewhere
+			// TODO: Redraw Tile accordingly with references to Materials somewhere. Consider a Dictionary<Tile, TileTexture>().
 		}
 
 		/// <summary>
