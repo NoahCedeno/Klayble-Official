@@ -20,7 +20,7 @@ namespace BattlePieceSystem
 			}
 			else
 			{
-				Debug.Log("Cannot interact with " + this.PieceName + "!");
+				Debug.Log("Cannot interact with " + PieceName + "!");
 			}
 		}
 	}
