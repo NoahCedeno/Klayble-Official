@@ -1,2 +1,41 @@
-# Auto detect text files and perform LF normalization
+Auto format line endings for text files
 * text=auto
+
+# Always diff
+*.cs text
+*.js text
+*.json text
+*.md text
+*.shader text
+*.txt text
+*.xml text
+*.yaml text
+
+# Diff Unity specific assets as text
+*.anim diff merge -text
+*.asset diff merge -text
+*.controller diff merge -text
+*.cubemap diff merge -text
+*.guiskin diff merge -text
+*.mat diff merge -text
+*.prefab diff merge -text
+*.unity diff merge -text
+
+# Ignore binary files in diffs
+*.dll binary
+*.exr binary
+*.fbx binary
+*.gif binary
+*.jpg binary
+*.mb binary
+*.ogg binary
+*.otf binary
+*.pdb binary
+*.pdf binary
+*.png binary
+*.psd binary
+*.raw binary
+*.tga binary
+*.tif binary
+*.ttf binary
+*.wav binary
