@@ -12,11 +12,6 @@ namespace BoardSystem
 		private void Awake()
 		{
 			m_RootOffsetToOrigin = new Vector2Int((int) transform.position.x, (int) transform.position.z);
-			SetupBoard();
-		}
-
-		private void SetupBoard()
-		{
 			CalculateTileMapBounds();
 			DefineTileMap();
 		}
