@@ -8,7 +8,9 @@ namespace BattlePieceSystem
 	/// </summary>
 	public abstract class BattleNPO : BattlePiece
 	{
-		public bool IsInteractable;
+		[SerializeField]
+		private bool m_IsInteractable;
+		public bool IsInteractable { get => m_IsInteractable; private set => m_IsInteractable = value; }
 
 		public void Interact() // TODO: Change access modifiers for the whole abstraction maybe.
 		{
@@ -18,7 +20,7 @@ namespace BattlePieceSystem
 			}
 			else
 			{
-				Debug.Log("Cannot interact with " + this.Name + "!");
+				Debug.Log("Cannot interact with " + this.PieceName + "!");
 			}
 		}
 	}

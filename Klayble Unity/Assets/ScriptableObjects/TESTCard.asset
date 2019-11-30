@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84780a6f92248e4580c6e743340f224, type: 3}
   m_Name: TESTCard
   m_EditorClassIdentifier: 
-  CardID: 88
-  Level: 50
-  HP: 900
-  Atk: 1800
-  Def: 2
-  Name: Chris
+  m_CardId: 88
+  m_Level: 50
+  m_HitPoints: 900
+  m_Attack: 1800
+  m_Defense: 2
+  m_CardName: Chris
