@@ -2,10 +2,10 @@
 
 namespace BoardSystem
 {
-	public class TileScript : MonoBehaviour
+	public class TileController : MonoBehaviour
 	{
 		[SerializeField]
-		private TileTypes TileType; // May become an enumerated TileType at some point.
+		private Tile TileType; // May become an enumerated TileType at some point.
 
 		/// <summary>
 		/// Returns the location of the Tile within the Board!
@@ -21,7 +21,7 @@ namespace BoardSystem
 		/// May return an enumerated Type.
 		/// </summary>
 		/// <returns>A String of the TileType.</returns>
-		public TileTypes GetTileType()
+		public Tile GetTileType()
 		{
 			return TileType;
 		}
@@ -30,7 +30,7 @@ namespace BoardSystem
 		/// Used to change the type of the Tile, updating the Tile's texture and information.
 		/// </summary>
 		/// <param name="NewTileType">The desired Tile type.</param>
-		public void SetTileType(TileTypes NewTileType)
+		public void SetTileType(Tile NewTileType)
 		{
 			TileType = NewTileType;
 			// TODO: Redraw Tile accordingly with references to Materials somewhere

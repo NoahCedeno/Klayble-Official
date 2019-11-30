@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace BoardSystem
 {
-	public class BoardScript : MonoBehaviour
+	public class BoardManager : MonoBehaviour
 	{
 		private Vector2Int RootOffsetToOrigin = new Vector2Int();
 		private int NumRows, NumCols;
-		private TileScript[,] TileMap;
+		private TileController[,] TileMap;
 
 		private void Awake()
 		{
@@ -55,7 +55,7 @@ namespace BoardSystem
 			NumCols = Mathf.Abs(lowestLocalX) + Mathf.Abs(highestLocalX) + ((lowestLocalX < 0 && highestLocalX > 0) ? 1 : 0);
 			NumRows = Mathf.Abs(lowestLocalZ) + Mathf.Abs(highestLocalZ) + ((lowestLocalZ < 0 && highestLocalZ > 0) ? 1 : 0);
 
-			TileMap = new TileScript[NumCols, NumRows]; // TODO: Investigate why subtracting 1 from each generates Index Error!
+			TileMap = new TileController[NumCols, NumRows]; // TODO: Investigate why subtracting 1 from each generates Index Error!
 
 			// Debug.Log("NumCols: " + NumCols);
 			// Debug.Log("NumRows: " + NumRows);
@@ -78,7 +78,7 @@ namespace BoardSystem
 
 				// Debug.Log(current.transform.gameObject.name + ": " + Mathf.Abs(currToOrigin.x) + ", " + Mathf.Abs(currToOrigin.y));
 
-				TileMap[Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y)] = current.gameObject.GetComponent<TileScript>();
+				TileMap[Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y)] = current.gameObject.GetComponent<TileController>();
 			}
 		}
 
@@ -89,7 +89,7 @@ namespace BoardSystem
 		/// <param name="col">The column index of the Tile requested.</param>
 		/// <param name="row">The row index of the Tile requested.</param>
 		/// <returns></returns>
-		public TileScript GetTileAt(int col, int row)
+		public TileController GetTileAt(int col, int row)
 		{
 			try
 			{
