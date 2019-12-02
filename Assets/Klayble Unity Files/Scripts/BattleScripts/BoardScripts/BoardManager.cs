@@ -74,6 +74,7 @@ namespace BoardSystem
                 // Debug.Log(current.transform.gameObject.name + ": " + Mathf.Abs(currToOrigin.x) + ", " + Mathf.Abs(currToOrigin.y));
 
                 m_TileMap[Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y)] = current.gameObject.GetComponent<TileController>();
+                m_TileMap[Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y)].ArrayLocation = new Vector2Int(Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y));
             }
         }
 
@@ -92,7 +93,7 @@ namespace BoardSystem
             }
             catch (IndexOutOfRangeException) // TODO: Consider keeping exception reference for debug testing, etc?
             {
-                Debug.Log("Indexes " + col + ", " + row + " are invalid.");
+                Debug.Log("Indices " + col + ", " + row + " are invalid.");
                 return null;
             }
         }

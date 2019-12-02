@@ -10,18 +10,22 @@ namespace BattlePieceSystem
     {
         [SerializeField]
         private int m_HitPoints;
+
         public int HitPoints { get => m_HitPoints; protected set => m_HitPoints = value; }
 
         [SerializeField]
         private int m_Attack;
+
         public int Attack { get => m_Attack; protected set => m_Attack = value; }
 
         [SerializeField]
         private int m_Defense;
+
         public int Defense { get => m_Defense; protected set => m_Defense = value; }
 
         [SerializeField]
         private Elementals m_ElementalType;
+
         public Elementals ElementalType { get => m_ElementalType; protected set => m_ElementalType = value; }
     }
 }

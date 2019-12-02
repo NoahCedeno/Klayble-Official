@@ -6,17 +6,34 @@ namespace BoardSystem
     {
         [SerializeField]
         private Tile m_Tile;
-
         public Tile Tile { get => m_Tile; private set => m_Tile = value; }
+
+        [SerializeField]
+        private Vector2Int m_ArrayLocation;
+        private bool IsLocationSet = false;
+        public Vector2Int ArrayLocation { get => m_ArrayLocation;
+            set
+            {
+                if (!IsLocationSet) // A one-time set!
+                {
+                    m_ArrayLocation = value;
+                    IsLocationSet = true;
+                    //Debug.Log("Set successfully!");
+                } else
+                {
+                    //Debug.Log("ArrayLocation cannot be set more than once!");
+                }
+            }
+        }
 
         [SerializeField]
         private LayerMask m_BattleFieldLayerMask;
 
         /// <summary>
-        /// Returns the location of the Tile within the Board!
+        /// Returns the location of the Tile in World Space!
         /// </summary>
         /// <returns>A Vector2Int of the Transform's X and Z Components.</returns>
-        public Vector2Int GetLocation()
+        public Vector2Int GetTransformLocation()
         {
             Vector3 position = transform.position;
             return new Vector2Int((int)position.x, (int)position.z);

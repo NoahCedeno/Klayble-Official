@@ -1,0 +1,59 @@
+I'm facing a problem, a structural conflict in my design.
+
+I should qualify this with my progress, I'm working on the Command Pattern that
+will create different turns for the fellas on my game.
+
+Basically, I started out with an abstract class BattleTurn, that has three
+fields:
+- BattlePiece User
+* - BattlePiece Target
+- BattleAction Action
+
+* Here's the problem, doctor
+
+How can I do a "MoveTurn" where the target is not a BattlePiece? After all, the
+target for selection should be a Tile prefab, or its TileController!
+
+A TileController isn't part of the TurnSystem. By definition, I made it to be
+part of the BoardSystem. I don't want to make a separate constructor besides the
+abstract one I made, because that feels like a waste of inheritance.
+
+Thus, I'm thinking of making an interface, whose type I will use in the *,
+instead of BattlePiece. Maybe I make an interface called IBattleSelectable,
+which groups objects by their ability to be selected in the UI phase of
+selecting a turn. By this definition, anything on the field should be
+IBattleSelectable, including Tiles and BattlePieces alike. Providing some
+implementation for the BattleAction enumerated types is necessary, but weird.
+
+I don't actually understand this, despite having written it down. This doesn't
+make much sense.
+
+Let's think about it again.
+Like Montague.Romeo and Capulet.Juliet, BattlePiece.System BattlePiece and
+BoardSystem.TileController are two star-crossed lovers in two separate
+namespaces. How can I make a happily-ever-after solution for them?
+
+My system hinges around the command pattern defining the actions that two
+BattlePieces do upon one another. They don't directly implement their own
+methods, instead being hosts for their base-data in battle, making a grouping
+by interface less useful.
+
+BattlePieces are data structures for the mutatable battle versions of a
+ScriptableObject instance that contains their base data. They contain no
+implicit methods at this point that would target another BattlePiece.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!! IDEA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+I think I have it.
+
+I may have to rethink my BattlePiece abstraction all over again. My god.
+
+I totally forgot that interfaces could hold properties as members!
+
+What if I were to create an interface IBattlePiece that held properties for
+variables like Vector2 Position, int HP, and things like that?
+
+What do my current BattlePieces and Tiles have in common?
+
+- Vector2 position on the Board
+    - (-1 for array accessing, vice versa w/ +1 for real position)

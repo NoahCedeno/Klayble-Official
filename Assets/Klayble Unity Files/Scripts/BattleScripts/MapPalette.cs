@@ -5,8 +5,8 @@
 /// </summary>
 public enum MapPalette
 {
-    TEST,
-    Field,
-    Castle,
-    Underworld
+    TEST = 0,
+    Field = 1,
+    Castle = 2,
+    Underworld = 3
 }
