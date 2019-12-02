@@ -19,5 +19,9 @@ namespace BattlePieceSystem
 		[SerializeField]
 		private int m_Defense;
 		public int Defense { get => m_Defense; protected set => m_Defense = value; }
+
+        [SerializeField]
+        private Elementals m_ElementalType;
+        public Elementals ElementalType { get => m_ElementalType; protected set => m_ElementalType = value; }
 	}
 }
