@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// Elementals enumerates a number of types that both moves and BattleAvatars can have.
 /// </summary>
 public enum Elementals
