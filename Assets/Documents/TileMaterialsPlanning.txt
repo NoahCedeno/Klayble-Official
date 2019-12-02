@@ -1,0 +1,105 @@
+Here's what I have in mind for the Tile-Material planning system.
+
+Because I feel there are so many ways to do this wrongfully, I feel like I
+should write out the steps I have in mind quickly.
+
+Think about a tile-based game. The floor is usually all sorts of different
+materials BASED AROUND A THEME/SETTING, right?
+
+There could be a list of preset material assets per theme/setting, possibly.
+Of course, these may vary, but certain tiles shouldn't have harmful
+
+WAIT.
+
+wait.
+
+Thinking about it more, what really needs to change around the setting, huh?
+Why would I do this if nothing changed, right?
+
+Lava, Water, and Poison are enumerated types of Tile that would probably not
+change. Granted, these are just sample Tile types as of right now.
+
+I may have to rethink this system.
+
+In my mind, I envision some editing tool with a dropdown menu that can let you
+select from a number of "palettes". These palettes would let you paint/build a
+map with a number of Materials that pertain to a certain setting, like a "field"
+vs. a "castle" or "sky" palette.
+
+So we have the generic enumerated types that we can use as indexers for the
+materials in a dictionary. Perhaps I have a number of dictionaries of names
+that involve the palettes? THIS MAY HAVE SAVED THE IDEA!!!
+
+Also IDEA is a keyword? Cool lol.
+
+In any case, I'll store my static container class with all the
+Dictionary<Tile, Material>'s with names like:
+- m_FieldTileMaterials
+- m_CastleTileMaterials
+
+I think this can work out!
+
+I just have to see, however, about the life of a static script. I may consider
+a singleton or something that I can activate with only one instance, since I
+only need one. Maybe I bound an instance of it to an empty GameObject?
+
+
+In any case, I need to include an enumerated MapPalette of all the types of
+palettes I want to have.
+
+!!! UNSURE IDEA !!!
+I need to store from so that I can ONLY load that palette during
+runtime.
+
+I have another IDEA.
+
+~~~~~| NEW IDEA |~~~~~
+
+My mind is bending all sorts of ways thinking about this, but I've got it now.
+
+I'll have my static TileMaterialManager class store:
+
+- Dictionary<MapPalette, List<Materials>>
+
+This guy will allow me to store the palettes of my map-specific materials for
+a MapPalette enumerated type. Said palettes should be generically ordered and
+named according to the palette and the content of the material.
+
+There are certain materials that are not unique, however, like a lava texture,
+or a poison texture or something like that.
+
+The MapPalette will probably be defined in the data about the match in a
+MatchManager class or something that organizes the flow of the game.
+
+This will most certainly be accessible, with
+
+~~~~~| DISTRACTIONS/CONSIDERATIONS |~~~~~
+
+I'm thinking that maybe more things than simply materials may change with
+different MapPalettes. I have to think about how walls and obstacles on a Tile
+look with respect to certain palettes. Maybe a rock structure that takes up a
+Tile in a field palette becomes a large skull or something in another hellish
+palette or something like that.
+
+That may be beyond my scope for right now, but I'd like to figure out a system
+to do this based on an enumerated MapPalette type contained somewhere in the
+match data.
+
+This leads me to think more about a MatchManager class that runs the show with
+the main game logic. I can take that on after I finish all the components that
+I have to, to get the game's mechanics running first.
+
+So out of this all, I've got:
+
+- A TileMaterialManager, which may become a generic MaterialManager at some
+  point lol.
+
+- Within that, a Dictionary<MapPalette, Material> that takes in a MapPalette
+  type and returns a list of materials.
+
+- A MatchManager class that does all the game logic, and stores a MapPalette
+  enumerated type.
+
+- Getter methods that access a MapPalette field from a MatchManager class and
+  return the proper material for the proper Tile enumerate type within a
+  TileController, and a 

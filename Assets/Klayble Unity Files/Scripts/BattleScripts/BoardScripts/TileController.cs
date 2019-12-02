@@ -5,7 +5,7 @@ namespace BoardSystem
 	public class TileController : MonoBehaviour
 	{
 		[SerializeField]
-		private Tile m_Tile; // May become an enumerated TileType at some point.
+		private Tile m_Tile;
 		public Tile Tile { get => m_Tile; private set => m_Tile = value; }
 
 		[SerializeField]

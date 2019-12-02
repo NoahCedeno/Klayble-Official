@@ -1,0 +1,46 @@
+What systems are at work with my Klayble game?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+GAME FLOW
+_________
+
+For each Player's Turn:
+    For each BattlePiece in Player's hand (Starting with DeckMaster):
+        UI Prompt for actions
+        Store request (via command pattern) :)
+    Execute Turn:
+        For each Turn in the queue:
+            Make appropriate changes
+            Play animations :)
+            Mutate targets' data appropriately
+            Call events appropriately(OnDeckMasterDeath to end match)
+_________
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Battle System
+    - Board
+        + Should reliably return Tiles at indices and hold a TileLayout.
+        + Find objects on Tiles via an assortment of fun methods
+        + Tiles should have serializable data including:
+            - Position within tilemap (Transform?)
+            - Tile type
+    - BattlePieces
+        + BattlePiece Abstraction
+            - BattleCard <-(Data)- CardData ScriptableObject
+                + Base Stats are held and updated only in CardData
+                + They are then passed to a BattleCard instance, used as a
+                  container for the fields in battle.
+            - BattleDeckMaster <-(Data)- DeckMasterData ScriptableObject
+        + BattleNPO
+            - Represents non-player objects (NPO) that are on the field, like
+              walls and trinkets and chests.
+            - Perhaps are interactable? Can trigger sequences for buffs and the
+              like.
+            - BattleStructure
+                - Represent buildings
+                - Walls
+            - BattleObject
+                - Represents anything that isn't a structure or
+                  player-controlled entity on the field
+                - Chests and items perhaps
