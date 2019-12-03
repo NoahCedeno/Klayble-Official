@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using BattlePieceSystem;
+﻿using BattlePieceSystem;
 
 namespace TurnSystem
 {
@@ -9,7 +6,6 @@ namespace TurnSystem
     {
         public MoveTurn(BattlePiece user, BattlePiece target) : base(user, target, BattleAction.Move)
         {
-            
         }
     }
 }

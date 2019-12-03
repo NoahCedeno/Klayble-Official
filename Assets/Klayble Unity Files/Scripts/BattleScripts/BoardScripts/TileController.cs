@@ -6,13 +6,18 @@ namespace BoardSystem
     {
         [SerializeField]
         private Tile m_Tile;
+
         public Tile Tile { get => m_Tile; private set => m_Tile = value; }
 
         [SerializeField]
         private Vector2Int m_ArrayLocation;
+
         [SerializeField]
         private bool IsLocationSet = false; // Useful to save this so no redefinition!
-        public Vector2Int ArrayLocation { get => m_ArrayLocation;
+
+        public Vector2Int ArrayLocation
+        {
+            get => m_ArrayLocation;
             set
             {
                 if (!IsLocationSet) // A one-time set!
@@ -20,7 +25,8 @@ namespace BoardSystem
                     m_ArrayLocation = value;
                     IsLocationSet = true;
                     //Debug.Log("Set successfully!");
-                } else
+                }
+                else
                 {
                     Debug.Log("ArrayLocation cannot be set more than once!");
                 }

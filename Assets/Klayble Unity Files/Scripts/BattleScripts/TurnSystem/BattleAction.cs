@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace TurnSystem
+﻿namespace TurnSystem
 {
     /// <summary>
     /// BattleActions are actions that fellas can use on the battlefield.
