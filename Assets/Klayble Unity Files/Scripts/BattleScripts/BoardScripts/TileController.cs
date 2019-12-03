@@ -10,7 +10,8 @@ namespace BoardSystem
 
         [SerializeField]
         private Vector2Int m_ArrayLocation;
-        private bool IsLocationSet = false;
+        [SerializeField]
+        private bool IsLocationSet = false; // Useful to save this so no redefinition!
         public Vector2Int ArrayLocation { get => m_ArrayLocation;
             set
             {
@@ -21,7 +22,7 @@ namespace BoardSystem
                     //Debug.Log("Set successfully!");
                 } else
                 {
-                    //Debug.Log("ArrayLocation cannot be set more than once!");
+                    Debug.Log("ArrayLocation cannot be set more than once!");
                 }
             }
         }
