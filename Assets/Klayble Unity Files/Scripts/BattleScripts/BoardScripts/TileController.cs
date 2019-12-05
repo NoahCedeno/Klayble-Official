@@ -75,5 +75,13 @@ namespace BoardSystem
                 return null;
             }
         }
+
+        /// <summary>
+        /// Simply returns IF a GameObject is on the Tile or not.
+        /// </summary>
+        /// <returns>If the result of GetGameObjectOn() is not null </return>
+        public bool IsGameObjectOn() {
+            return GetGameObjectOn() != null;
+        }
     }
 }
