@@ -9,11 +9,10 @@ namespace BoardSystem
         public Tile Tile { get => m_Tile; private set => m_Tile = value; }
 
         [SerializeField]
-        private Vector2Int m_ArrayLocation;
-        public Vector2Int ArrayLocation { get => m_ArrayLocation; private set => m_ArrayLocation = value; }
+        private bool IsLocationSet = false; // Useful to save this so no redefinition!
 
         [SerializeField]
-        private bool IsLocationSet = false; // Useful to save this so no redefinition!
+        private Vector2Int m_ArrayLocation;
 
         public Vector2Int ArrayLocation
         {
