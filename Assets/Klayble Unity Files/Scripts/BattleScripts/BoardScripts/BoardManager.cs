@@ -11,7 +11,7 @@ namespace BoardSystem
 
         private void Awake()
         {
-            m_RootOffsetToOrigin = new Vector2Int((int)transform.position.x, (int)transform.position.z);
+            m_RootOffsetToOrigin = new Vector2Int((int) transform.position.x, (int) transform.position.z);
             CalculateTileMapBounds();
             DefineTileMap();
         }
@@ -31,7 +31,7 @@ namespace BoardSystem
             for (int i = 0; i < transform.childCount; i++)
             {
                 Transform current = transform.GetChild(i);
-                Vector2Int currCoords = new Vector2Int((int)current.localPosition.x, (int)current.localPosition.z);
+                Vector2Int currCoords = new Vector2Int((int) current.localPosition.x, (int) current.localPosition.z);
 
                 // Find Extrema on X
                 highestLocalX = (currCoords.x > highestLocalX) ? currCoords.x : highestLocalX;
@@ -73,7 +73,9 @@ namespace BoardSystem
 
                 // Debug.Log(current.transform.gameObject.name + ": " + Mathf.Abs(currToOrigin.x) + ", " + Mathf.Abs(currToOrigin.y));
 
+                // Defines our TileMap array with the GameObject's TileScript
                 m_TileMap[Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y)] = current.gameObject.GetComponent<TileController>();
+                // Defines the Vector2 of the coordinates in the board, within the TileScript.
                 m_TileMap[Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y)].ArrayLocation = new Vector2Int(Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y));
             }
         }

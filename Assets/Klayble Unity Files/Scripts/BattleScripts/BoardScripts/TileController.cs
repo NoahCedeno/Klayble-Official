@@ -6,11 +6,11 @@ namespace BoardSystem
     {
         [SerializeField]
         private Tile m_Tile;
-
         public Tile Tile { get => m_Tile; private set => m_Tile = value; }
 
         [SerializeField]
         private Vector2Int m_ArrayLocation;
+        public Vector2Int ArrayLocation { get => m_ArrayLocation; private set => m_ArrayLocation = value; }
 
         [SerializeField]
         private bool IsLocationSet = false; // Useful to save this so no redefinition!
@@ -39,11 +39,29 @@ namespace BoardSystem
         /// <summary>
         /// Returns the location of the Tile in World Space!
         /// </summary>
-        /// <returns>A Vector2Int of the Transform's X and Z Components.</returns>
+        /// <returns>A Vector2Int of the Transform's X and Z Components in World Space.</returns>
         public Vector2Int GetTransformLocation()
         {
             Vector3 position = transform.position;
-            return new Vector2Int((int)position.x, (int)position.z);
+            return new Vector2Int((int) position.x, (int) position.z);
+        }
+
+        /// <summary>
+        /// Returns the location of the Tile in Local Space, relative to the Board.
+        /// </summary>
+        /// <returns>A Vector2Int of the Transform's X and Z Components in Local Space.</returns>
+        public Vector2Int GetLocalPosition()
+        {
+            Vector3 localPosition = transform.localPosition;
+            return new Vector2Int((int) localPosition.x, (int) localPosition.z);
+        }
+
+        /// <summary>
+        /// Returns the location of the Tile in the array.
+        /// </summary>
+        /// <returns>A Vector2Int of the Array's Location.</returns>
+        public Vector2Int GetArrayLocation() {
+            return ArrayLocation;
         }
 
         /// <summary>
@@ -74,6 +92,14 @@ namespace BoardSystem
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Simply returns IF a GameObject is on the Tile or not.
+        /// </summary>
+        /// <returns>If the result of GetGameObjectOn() is not null </return>
+        public bool IsGameObjectOn() {
+            return GetGameObjectOn() != null;
         }
     }
 }
