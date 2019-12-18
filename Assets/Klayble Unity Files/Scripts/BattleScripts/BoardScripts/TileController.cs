@@ -6,6 +6,7 @@ namespace BoardSystem
     {
         [SerializeField]
         private Tile m_Tile;
+
         public Tile Tile { get => m_Tile; private set => m_Tile = value; }
 
         [SerializeField]
@@ -55,7 +56,7 @@ namespace BoardSystem
         public Vector2Int GetTransformLocation()
         {
             Vector3 position = transform.position;
-            return new Vector2Int((int) position.x, (int) position.z);
+            return new Vector2Int((int)position.x, (int)position.z);
         }
 
         /// <summary>
@@ -65,14 +66,15 @@ namespace BoardSystem
         public Vector2Int GetLocalPosition()
         {
             Vector3 localPosition = transform.localPosition;
-            return new Vector2Int((int) localPosition.x, (int) localPosition.z);
+            return new Vector2Int((int)localPosition.x, (int)localPosition.z);
         }
 
         /// <summary>
         /// Returns the location of the Tile in the array.
         /// </summary>
         /// <returns>A Vector2Int of the Array's Location.</returns>
-        public Vector2Int GetArrayLocation() {
+        public Vector2Int GetArrayLocation()
+        {
             return ArrayLocation;
         }
 
@@ -118,7 +120,8 @@ namespace BoardSystem
         /// Simply returns IF a GameObject is on the Tile or not.
         /// </summary>
         /// <returns>If the result of GetGameObjectOn() is not null </return>
-        public bool IsGameObjectOn() {
+        public bool IsGameObjectOn()
+        {
             return GetGameObjectOn() != null;
         }
     }
