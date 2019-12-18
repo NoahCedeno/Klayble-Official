@@ -15,14 +15,16 @@ namespace BoardSystem
         private Vector2Int m_ArrayLocation;
 
         [SerializeField]
-        private BoxCollider OnTileCollider;
+        public BoxCollider OnTileCollider;
 
         [SerializeField] // Not sure if I save this
-        private GameObject ObjectOn;
+        public GameObject ObjectOn;
 
         private void Awake()
         {
             OnTileCollider = gameObject.GetComponent<BoxCollider>();
+            OnTileCollider.enabled = true;
+            Debug.Log("Colliders enabled");
         }
 
         public Vector2Int ArrayLocation
@@ -93,6 +95,7 @@ namespace BoardSystem
         private void OnTriggerEnter(Collider objectOnCollider)
         {
             ObjectOn = objectOnCollider.gameObject;
+            // TODO: Set TileOn in the GameObject!
             Debug.Log("Object " + ObjectOn.name + " entered " + gameObject.name + "!");
         }
 
