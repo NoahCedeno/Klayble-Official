@@ -14,6 +14,17 @@ namespace BoardSystem
         [SerializeField]
         private Vector2Int m_ArrayLocation;
 
+        [SerializeField]
+        private BoxCollider OnTileCollider;
+
+        [SerializeField] // Not sure if I save this
+        private GameObject ObjectOn;
+
+        private void Awake()
+        {
+            OnTileCollider = gameObject.GetComponent<BoxCollider>();
+        }
+
         public Vector2Int ArrayLocation
         {
             get => m_ArrayLocation;
@@ -73,24 +84,31 @@ namespace BoardSystem
             // TODO: Redraw Tile accordingly with references to Materials somewhere. Consider a Dictionary<Tile, TileTexture>().
         }
 
+        //****************| GameObject Checking |****************
+
         /// <summary>
-        /// Uses a Raycast, targeting only Battlefield-layer colliders (not Tile layer),
-        /// returns whatever it hits (or doesn't).
+        /// Defines ObjectOn when a GameObject enters the Tile's Collider.
         /// </summary>
-        /// <returns>Returns either the GameObject it hit, or null.</returns>
+        /// <param name="objectOnCollider">The Collider of the object on the Tile.</param>
+        private void OnTriggerEnter(Collider objectOnCollider)
+        {
+            ObjectOn = objectOnCollider.gameObject;
+            Debug.Log("Object " + ObjectOn.name + " entered " + gameObject.name + "!");
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            ObjectOn = null;
+            Debug.Log("Object has LEFT " + gameObject.name + "!");
+        }
+
+        /// <summary>
+        /// Uses our trigger Collider to find whatever GameObject is on this Tile.
+        /// </summary>
+        /// <returns>Returns either the GameObject within the Tile's collider.</returns>
         public GameObject GetGameObjectOn()
         {
-            RaycastHit hit;
-
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hit, m_BattleFieldLayerMask))
-            {
-                // Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * hit.distance, Color.yellow);
-                return hit.collider.gameObject;
-            }
-            else
-            {
-                return null;
-            }
+            return ObjectOn;
         }
 
         /// <summary>
