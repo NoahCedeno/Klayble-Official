@@ -25,7 +25,6 @@ namespace BoardSystem
         {
             OnTileCollider = gameObject.GetComponent<BoxCollider>();
             OnTileCollider.enabled = true;
-            Debug.Log("Colliders enabled");
         }
 
         public Vector2Int ArrayLocation
@@ -98,13 +97,17 @@ namespace BoardSystem
         {
             ObjectOn = objectOnCollider.gameObject;
             // TODO: Set TileOn in the GameObject!
-            Debug.Log("Object " + ObjectOn.name + " entered " + gameObject.name + "!");
+            //Debug.Log("Object " + ObjectOn.name + " entered " + gameObject.name + "!");
         }
 
-        private void OnTriggerExit(Collider other)
+        /// <summary>
+        /// Sets ObjectOn to null when a GameObject leaves the Tile's Collider.
+        /// </summary>
+        /// <param name="objectOnCollider">The Collider of the object on the Tile.</param>
+        private void OnTriggerExit(Collider objectOnCollider)
         {
             ObjectOn = null;
-            Debug.Log("Object has LEFT " + gameObject.name + "!");
+            //Debug.Log("Object has LEFT " + gameObject.name + "!");
         }
 
         /// <summary>
