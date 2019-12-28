@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using BattlePieceSystem;
 
 namespace BoardSystem
 {
@@ -16,9 +17,13 @@ namespace BoardSystem
         private Vector2Int m_ArrayLocation;
 
         [SerializeField]
+        private Adjacents m_Adjacents;
+        public Adjacents Adjacents { get => m_Adjacents; private set => m_Adjacents = value; }
+
+        [SerializeField]
         public BoxCollider OnTileCollider;
 
-        [SerializeField] // Not sure if I save this
+        [SerializeField] // TODO: Not sure if I save this
         public GameObject ObjectOn;
 
         private void Awake()
@@ -96,8 +101,9 @@ namespace BoardSystem
         private void OnTriggerEnter(Collider objectOnCollider)
         {
             ObjectOn = objectOnCollider.gameObject;
+
             // TODO: Set TileOn in the GameObject!
-            //Debug.Log("Object " + ObjectOn.name + " entered " + gameObject.name + "!");
+            // Debug.Log("Object " + ObjectOn.name + " entered " + gameObject.name + "!");
         }
 
         /// <summary>

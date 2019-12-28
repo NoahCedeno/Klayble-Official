@@ -837,11 +837,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 875886854}
-  - component: {fileID: 875886855}
   - component: {fileID: 875886857}
   - component: {fileID: 875886856}
+  - component: {fileID: 875886858}
+  - component: {fileID: 875886859}
+  - component: {fileID: 875886855}
   m_Layer: 0
-  m_Name: CardObject
+  m_Name: CardModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -923,6 +925,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!54 &875886858
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875886853}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &875886859
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875886853}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,6 +1630,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6720168816586016675, guid: 3ec5ec583a417e44daea43a90c2b43a1,
+        type: 3}
+      propertyPath: IsLocationSet
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6781967499515433762, guid: 3ec5ec583a417e44daea43a90c2b43a1,
         type: 3}
       propertyPath: m_LocalPosition.x
