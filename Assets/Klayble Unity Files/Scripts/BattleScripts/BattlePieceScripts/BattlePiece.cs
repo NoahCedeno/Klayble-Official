@@ -13,5 +13,7 @@ namespace BattlePieceSystem
         protected string m_PieceName;
 
         public string PieceName { get => m_PieceName; private set => m_PieceName = value; }
+
+        // TODO: Should hold Model reference!
     }
 }
