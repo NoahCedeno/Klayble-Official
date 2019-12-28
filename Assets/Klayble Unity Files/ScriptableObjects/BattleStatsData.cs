@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BattlePieceSystem;
 
-[CreateAssetMenu(fileName = "StatsData", menuName = "ScriptableObjects/StatsData", order = 1)]
+[CreateAssetMenu(fileName = "BattleStatsData", menuName = "ScriptableObjects/BattleStatsData", order = 1)]
 public class BattleStatsData : ScriptableObject
 {
     [SerializeField]
