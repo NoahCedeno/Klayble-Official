@@ -6,6 +6,12 @@ namespace BattlePieceSystem
 {
     public class BattleInteractable : BattleDeckMaster
     {
-        // TODO: If Items or Buffs exist, implement me!
+        /* TODO: If Items or Buffs exist, implement me
+         * 
+         * Also, there will need to be an Item ScriptableObject (Icon, Value, Buff?),
+         * currency in the game (with a shop),
+         * Buffs (Atk, HP, Level, etc),
+         * and more. Something to make Items useful and attractive during gameplay.
+         */
     }
 }
