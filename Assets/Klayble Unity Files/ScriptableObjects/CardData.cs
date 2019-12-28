@@ -17,4 +17,9 @@ public class CardData : ScriptableObject
     private BattleStats m_BattleStats;
 
     public BattleStats BattleStats { get => m_BattleStats; private set => m_BattleStats = value; }
+
+    [SerializeField]
+    private MoveData m_MoveData;
+
+    public MoveData MoveData { get => m_MoveData; private set => m_MoveData = value; }
 }
