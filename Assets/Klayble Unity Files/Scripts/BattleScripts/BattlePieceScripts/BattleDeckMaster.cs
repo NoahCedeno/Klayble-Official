@@ -2,6 +2,9 @@
 
 namespace BattlePieceSystem
 {
+    /// <summary>
+    /// Represents a DeckMaster on the battlefield!
+    /// </summary>
     public class BattleDeckMaster : BattlePiece
     {
         [SerializeField]

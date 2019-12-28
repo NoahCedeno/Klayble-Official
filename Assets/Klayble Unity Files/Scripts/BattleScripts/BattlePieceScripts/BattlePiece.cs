@@ -2,6 +2,9 @@
 
 namespace BattlePieceSystem
 {
+    /// <summary>
+    /// Represents any piece on the battlefield/board via abstraction.
+    /// </summary>
     public abstract class BattlePiece : MonoBehaviour
     {
         [SerializeField]

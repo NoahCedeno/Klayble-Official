@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace BattlePieceSystem
 {
+    /// <summary>
+    /// Represents something that is interactable on the battlefield, a reward and/or cutscene trigger!
+    /// </summary>
     public class BattleInteractable : BattleDeckMaster
     {
         /* TODO: If Items or Buffs exist, implement me

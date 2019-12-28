@@ -2,6 +2,9 @@
 
 namespace BattlePieceSystem
 {
+    /// <summary>
+    /// Represents a Card on the battleField!
+    /// </summary>
     public class BattleCard : BattlePiece
     {
         [SerializeField]
