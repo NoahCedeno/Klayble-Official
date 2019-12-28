@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace BattlePieceSystem
 {
@@ -8,11 +6,9 @@ namespace BattlePieceSystem
     {
         [SerializeField]
         private DeckMasterData m_DMData;
+
         public DeckMasterData DMData { get => m_DMData; private set => m_DMData = value; }
 
         // TODO: Should hold Model reference!
-
-        
-
     }
 }
