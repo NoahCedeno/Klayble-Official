@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SubstringTextWriter : MonoBehaviour
+public class TypedTextWriter : MonoBehaviour
 {
     [SerializeField]
     private string m_TextToWrite;
