@@ -3,6 +3,9 @@ using BattlePieceSystem;
 
 namespace BoardSystem
 {
+    /// <summary>
+    /// TileControllers manage the whole of the BoardSystem, storing locations, adjacent TileControllers, and more.
+    /// </summary>
     public class TileController : MonoBehaviour
     {
         [SerializeField]
@@ -18,10 +21,10 @@ namespace BoardSystem
 
         [SerializeField]
         private Adjacents m_Adjacents;
-        public Adjacents Adjacents { get => m_Adjacents; private set => m_Adjacents = value; }
+        public Adjacents Adjacents { get => m_Adjacents; set => m_Adjacents = value; }
 
         [SerializeField]
-        public BoxCollider OnTileCollider;
+        private BoxCollider OnTileCollider;
 
         [SerializeField] // TODO: Not sure if I save this
         public GameObject ObjectOn;
@@ -30,6 +33,8 @@ namespace BoardSystem
         {
             OnTileCollider = gameObject.GetComponent<BoxCollider>();
             OnTileCollider.enabled = true;
+
+            Adjacents = new Adjacents(false, false, false, false); // Initialized as false, checked in BoardManager.DefineAdjacents()
         }
 
         public Vector2Int ArrayLocation
@@ -133,5 +138,10 @@ namespace BoardSystem
         {
             return GetGameObjectOn() != null;
         }
+
+        //****************| Adjacents Methods |****************
+
+
+
     }
 }

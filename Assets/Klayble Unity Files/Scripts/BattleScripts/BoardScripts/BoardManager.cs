@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace BoardSystem
@@ -14,6 +15,8 @@ namespace BoardSystem
             m_RootOffsetToOrigin = new Vector2Int((int)transform.position.x, (int)transform.position.z);
             CalculateTileMapBounds();
             DefineTileMap();
+            DefineAdjacents();
+            //StartCoroutine(DefineAdjacents());
         }
 
         /// <summary>
@@ -62,7 +65,7 @@ namespace BoardSystem
         /// vectors to the parent's origin, to the array/global origin.
         /// </summary>
         private void DefineTileMap()
-        {
+        { 
             for (int i = 0; i < transform.childCount; i++)
             {
                 Transform current = transform.GetChild(i);
@@ -77,6 +80,39 @@ namespace BoardSystem
                 m_TileMap[Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y)] = current.gameObject.GetComponent<TileController>();
                 // Defines the Vector2 of the coordinates in the board, within the TileScript.
                 m_TileMap[Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y)].ArrayLocation = new Vector2Int(Mathf.Abs(currToOrigin.x), Mathf.Abs(currToOrigin.y));
+            }
+        }
+
+        /// <summary>
+        /// Defines the Adjacent component of each TileController in the m_TileMap!
+        /// </summary>
+        private void DefineAdjacents()
+        {
+            TileController current;
+            bool hasNorth;
+            bool hasEast;
+            bool hasSouth;
+            bool hasWest;
+
+            for (int i = 0; i < m_TileMap.GetLength(0); i++)
+            {
+                for (int j = 0; j < m_TileMap.GetLength(1); j++)
+                {
+                    current = GetTileAt(i, j);
+
+                    if (current != null)
+                    {
+                        // East-West Checking
+                        hasWest = (i - 1 >= 0 && m_TileMap[i - 1, j] != null);
+                        hasEast = (i + 1 <= m_TileMap.GetLength(0) - 1 && m_TileMap[i + 1, j] != null);
+
+                        // North-South Checking
+                        hasNorth = (j - 1 >= 0 && m_TileMap[i, j - 1] != null);
+                        hasSouth = (j + 1 <= m_TileMap.GetLength(1) - 1 && m_TileMap[i, j + 1] != null);
+
+                        m_TileMap[i, j].Adjacents = new Adjacents(hasNorth, hasSouth, hasEast, hasWest);
+                    }
+                }
             }
         }
 
@@ -98,11 +134,18 @@ namespace BoardSystem
                 Debug.Log("Indices " + col + ", " + row + " are invalid.");
                 return null;
             }
+            catch (NullReferenceException)
+            {
+                Debug.Log("Indices " + col + ", " + row + " have store no value.");
+                return null;
+            }
         }
 
         public void SetTileTypeAt(int col, int row, Tile newTile)
         {
             GetTileAt(col, row).SetTileType(newTile);
         }
+
+
     }
 }
