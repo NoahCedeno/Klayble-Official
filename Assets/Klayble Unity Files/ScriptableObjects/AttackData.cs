@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "MoveData", menuName = "ScriptableObjects/MoveData", order = 3)]
-public class MoveData : ScriptableObject
+[CreateAssetMenu(fileName = "AttackData", menuName = "ScriptableObjects/AttackData", order = 3)]
+public class AttackData : ScriptableObject
 {
     [SerializeField]
     private Elementals m_ElementalType;

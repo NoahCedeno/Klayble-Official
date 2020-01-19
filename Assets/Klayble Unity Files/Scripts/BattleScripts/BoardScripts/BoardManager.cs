@@ -16,7 +16,6 @@ namespace BoardSystem
             CalculateTileMapBounds();
             DefineTileMap();
             DefineAdjacents();
-            //StartCoroutine(DefineAdjacents());
         }
 
         /// <summary>
