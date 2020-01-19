@@ -5,7 +5,7 @@ namespace BattleObjectSystem
     /// <summary>
     /// Represents a Card on the battleField!
     /// </summary>
-    public class BattleCard : BattlePiece
+    public class BattleCard : BattleController
     {
         [SerializeField]
         private CardData m_CardData;

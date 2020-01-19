@@ -7,7 +7,7 @@ namespace BattleObjectSystem
     /// <summary>
     /// Represents something that is interactable on the battlefield, a reward and/or cutscene trigger!
     /// </summary>
-    public class BattleInteractable : BattlePiece
+    public class BattleInteractable : BattleController
     {
         /* TODO: If Items or Buffs exist, implement me
          * 

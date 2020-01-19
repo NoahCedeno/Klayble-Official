@@ -5,7 +5,7 @@ namespace BattleObjectSystem
     /// <summary>
     /// Represents a DeckMaster on the battlefield!
     /// </summary>
-    public class BattleDeckMaster : BattlePiece
+    public class BattleDeckMaster : BattleController
     {
         [SerializeField]
         private DeckMasterData m_DMData;
