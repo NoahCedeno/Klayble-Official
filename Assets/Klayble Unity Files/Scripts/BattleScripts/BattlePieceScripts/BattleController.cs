@@ -41,7 +41,8 @@ namespace BattleObjectSystem
             Data = gameObject.GetComponent<BattleData>(); // TODO: Create a BattleData Derivative for ALL BattleObjects
             BattleObject = Data.BattleObject;
 
-            CanMove = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster); // These cases will need definition.
+            // These cases will need redefinition as restrictions develop.
+            CanMove = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster);
             CanAttack = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster);
         }
 

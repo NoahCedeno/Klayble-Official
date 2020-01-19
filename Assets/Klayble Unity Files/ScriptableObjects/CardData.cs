@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using BattleObjectSystem;
+﻿using BattleObjectSystem;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "CardData", menuName = "ScriptableObjects/CardData", order = 1)]
 public class CardData : BattleData

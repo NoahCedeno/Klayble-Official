@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using BattleObjectSystem;
+using System.Collections.Generic;
 using UnityEngine;
-using BattleObjectSystem;
 
 [CreateAssetMenu(fileName = "DeckMasterData", menuName = "ScriptableObjects/DeckMasterData", order = 2)]
 public class DeckMasterData : BattleData

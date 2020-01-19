@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using BattleObjectSystem;
+﻿using BattleObjectSystem;
+using UnityEngine;
 
 public class BattleData : ScriptableObject
 {
@@ -17,5 +17,4 @@ public class BattleData : ScriptableObject
     protected BattleObject m_BattleObject;
 
     public BattleObject BattleObject { get => m_BattleObject; private set => m_BattleObject = value; }
-
 }
