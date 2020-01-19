@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "CardData", menuName = "ScriptableObjects/CardData", order = 1)]
-public class CardData : ScriptableObject
+public class CardData : BattleData
 {
     [SerializeField]
     private int m_CardId;
@@ -9,17 +9,9 @@ public class CardData : ScriptableObject
     public int CardId { get => m_CardId; private set => m_CardId = value; }
 
     [SerializeField]
-    private int m_Level;
+    private AttackData m_AttackData;
 
-    public int Level { get => m_Level; private set => m_Level = value; }
+    public AttackData AttackData { get => m_AttackData; private set => m_AttackData = value; }
 
-    [SerializeField]
-    private BattleStats m_BattleStats;
-
-    public BattleStats BattleStats { get => m_BattleStats; private set => m_BattleStats = value; }
-
-    [SerializeField]
-    private AttackData m_MoveData;
-
-    public AttackData MoveData { get => m_MoveData; private set => m_MoveData = value; }
+    // TODO: Check with Jeff if I can use abstraction to still inherit serialized data with backing fields.
 }
