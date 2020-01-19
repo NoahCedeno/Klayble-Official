@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using BoardSystem;
 
 namespace BattleObjectSystem
 {
     /// <summary>
     /// Planned to be the base class for my more specific scripts.
     /// </summary>
+    [DisallowMultipleComponent]
     public class BattleController : MonoBehaviour
     {
         [SerializeField]
@@ -12,12 +14,12 @@ namespace BattleObjectSystem
 
         public BattleData Data { get => m_Data; private set => m_Data = value; }
 
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private BattleObject m_BattleObject;
 
         public BattleObject BattleObject { get => m_BattleObject; private set => m_BattleObject = value; }
 
-        [SerializeField]
+        [SerializeField, HideInInspector]
         protected Vector2Int m_BoardPosition;
 
         public Vector2Int BoardPosition { get => m_BoardPosition; private set => m_BoardPosition = value; }
@@ -41,6 +43,7 @@ namespace BattleObjectSystem
             // These cases will need redefinition as restrictions develop.
             CanMove = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster);
             CanAttack = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster);
+
         }
 
         public void Move(Vector2Int direction)
@@ -51,9 +54,19 @@ namespace BattleObjectSystem
             }
         }
 
+        /// <summary>
+        /// Updates the Board Position according to a TileController's,
+        /// called every time the GO enters a TileController's Collider.
+        /// </summary>
+        public void UpdateBoardPosition(TileController tileOn)
+        {
+            BoardPosition = tileOn.ArrayLocation;
+        }
+
         public void Attack(BattleController target)
         {
             Debug.Log("Attacking " + target.Data.name + "!"); // TODO: Implement Something Here!
         }
+
     }
 }

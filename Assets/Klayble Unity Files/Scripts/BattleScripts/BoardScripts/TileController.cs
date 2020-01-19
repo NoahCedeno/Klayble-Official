@@ -16,7 +16,7 @@ namespace BoardSystem
         [SerializeField]
         private bool IsLocationSet = false; // Useful to save this so no redefinition!
 
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private Vector2Int m_ArrayLocation;
 
         [SerializeField]
@@ -29,6 +29,9 @@ namespace BoardSystem
         [SerializeField] // TODO: Not sure if I save this
         public GameObject ObjectOn;
 
+
+        // + + + + + + + + + + | Methods | + + + + + + + + + + 
+         
         private void Awake()
         {
             OnTileCollider = gameObject.GetComponent<BoxCollider>();
@@ -106,8 +109,11 @@ namespace BoardSystem
         private void OnTriggerEnter(Collider objectOnCollider)
         {
             ObjectOn = objectOnCollider.gameObject;
-
-            // TODO: Set TileOn in the GameObject!
+            if (ObjectOn.GetComponent<BattleController>())
+            {
+                ObjectOn.GetComponent<BattleController>().UpdateBoardPosition(this);
+            }
+            
             // Debug.Log("Object " + ObjectOn.name + " entered " + gameObject.name + "!");
         }
 
@@ -138,10 +144,6 @@ namespace BoardSystem
         {
             return GetGameObjectOn() != null;
         }
-
-        //****************| Adjacents Methods |****************
-
-
 
     }
 }
