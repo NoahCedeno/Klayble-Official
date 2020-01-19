@@ -39,16 +39,10 @@ namespace BattleObjectSystem
         private void Awake()
         {
             Data = gameObject.GetComponent<BattleData>(); // TODO: Create a BattleData Derivative for ALL BattleObjects
-            
-            if (Data is CardData)
-            {
-                BattleObject = BattleObject.Card;
-            }
-            else if (Data is DeckMasterData)
-            {
-                BattleObject = BattleObject.DeckMaster;
-            }
-            // TODO: Complete other cases
+            BattleObject = Data.BattleObject;
+
+            CanMove = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster); // These cases will need definition.
+            CanAttack = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster);
         }
 
         public void Move(Vector2Int direction)

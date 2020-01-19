@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using BattleObjectSystem;
 
 [CreateAssetMenu(fileName = "CardData", menuName = "ScriptableObjects/CardData", order = 1)]
 public class CardData : BattleData
@@ -12,6 +13,11 @@ public class CardData : BattleData
     private AttackData m_AttackData;
 
     public AttackData AttackData { get => m_AttackData; private set => m_AttackData = value; }
+
+    private void Awake()
+    {
+        m_BattleObject = BattleObject.Card;
+    }
 
     // TODO: Check with Jeff if I can use abstraction to still inherit serialized data with backing fields.
 }
