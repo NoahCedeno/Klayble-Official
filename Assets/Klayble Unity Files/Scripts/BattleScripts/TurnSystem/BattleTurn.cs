@@ -1,4 +1,4 @@
-﻿using BattlePieceSystem;
+﻿using BattleObjectSystem;
 using UnityEngine;
 
 namespace TurnSystem

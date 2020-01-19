@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BattlePieceSystem
+namespace BattleObjectSystem
 {
     /// <summary>
     /// Represents any piece on the battlefield/board via abstraction.

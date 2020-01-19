@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BattlePieceSystem
+namespace BattleObjectSystem
 {
     /// <summary>
     /// Represents something that is interactable on the battlefield, a reward and/or cutscene trigger!

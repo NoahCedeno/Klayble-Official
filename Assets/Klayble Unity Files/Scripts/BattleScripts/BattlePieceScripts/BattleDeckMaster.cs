@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BattlePieceSystem
+namespace BattleObjectSystem
 {
     /// <summary>
     /// Represents a DeckMaster on the battlefield!

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BattlePieceSystem
+namespace BattleObjectSystem
 {
     /// <summary>
     /// Represents a Card on the battleField!
