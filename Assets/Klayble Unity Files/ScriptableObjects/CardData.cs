@@ -16,6 +16,7 @@ public class CardData : BattleData
 
     private void Awake()
     {
+        // Seems harmless to use backing variable, 'set' accessibility prevented me from using the public one.
         m_BattleObject = BattleObject.Card;
     }
 

@@ -15,6 +15,6 @@ public class BattleData : ScriptableObject
 
     [SerializeField]
     protected BattleObject m_BattleObject;
-
+    
     public BattleObject BattleObject { get => m_BattleObject; private set => m_BattleObject = value; }
 }

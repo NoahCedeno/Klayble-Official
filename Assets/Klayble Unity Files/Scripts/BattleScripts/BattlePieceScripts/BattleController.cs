@@ -2,6 +2,9 @@
 
 namespace BattleObjectSystem
 {
+    /// <summary>
+    /// Planned to be the base class for my more specific scripts.
+    /// </summary>
     public class BattleController : MonoBehaviour
     {
         [SerializeField]
@@ -20,11 +23,6 @@ namespace BattleObjectSystem
         public Vector2Int BoardPosition { get => m_BoardPosition; private set => m_BoardPosition = value; }
 
         [SerializeField]
-        protected string m_PieceName;
-
-        public string PieceName { get => m_PieceName; private set => m_PieceName = value; }
-
-        [SerializeField]
         private bool m_CanMove;
 
         public bool CanMove { get => m_CanMove; private set => m_CanMove = value; }
@@ -36,9 +34,8 @@ namespace BattleObjectSystem
 
         // + + + + + + + + + + | Methods | + + + + + + + + + +
 
-        private void Awake()
+        protected void Awake()
         {
-            Data = gameObject.GetComponent<BattleData>(); // TODO: Create a BattleData Derivative for ALL BattleObjects
             BattleObject = Data.BattleObject;
 
             // These cases will need redefinition as restrictions develop.
@@ -56,7 +53,7 @@ namespace BattleObjectSystem
 
         public void Attack(BattleController target)
         {
-            Debug.Log("Attacking " + target.PieceName + "!"); // TODO: Implement Something Here!
+            Debug.Log("Attacking " + target.Data.name + "!"); // TODO: Implement Something Here!
         }
     }
 }
