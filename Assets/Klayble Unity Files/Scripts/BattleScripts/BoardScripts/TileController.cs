@@ -1,11 +1,12 @@
-﻿using UnityEngine;
-using BattleObjectSystem;
+﻿using BattleObjectSystem;
+using UnityEngine;
 
 namespace BoardSystem
 {
     /// <summary>
     /// TileControllers manage the whole of the BoardSystem, storing locations, adjacent TileControllers, and more.
     /// </summary>
+    [DisallowMultipleComponent]
     public class TileController : MonoBehaviour
     {
         [SerializeField]
@@ -21,6 +22,7 @@ namespace BoardSystem
 
         [SerializeField]
         private Adjacents m_Adjacents;
+
         public Adjacents Adjacents { get => m_Adjacents; set => m_Adjacents = value; }
 
         [SerializeField]
@@ -29,9 +31,8 @@ namespace BoardSystem
         [SerializeField] // TODO: Not sure if I save this
         public GameObject ObjectOn;
 
+        // + + + + + + + + + + | Methods | + + + + + + + + + +
 
-        // + + + + + + + + + + | Methods | + + + + + + + + + + 
-         
         private void Awake()
         {
             OnTileCollider = gameObject.GetComponent<BoxCollider>();
@@ -113,7 +114,7 @@ namespace BoardSystem
             {
                 ObjectOn.GetComponent<BattleController>().UpdateBoardPosition(this);
             }
-            
+
             // Debug.Log("Object " + ObjectOn.name + " entered " + gameObject.name + "!");
         }
 
@@ -144,6 +145,5 @@ namespace BoardSystem
         {
             return GetGameObjectOn() != null;
         }
-
     }
 }

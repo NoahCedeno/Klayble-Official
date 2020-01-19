@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using BoardSystem;
+﻿using BoardSystem;
+using UnityEngine;
 
 namespace BattleObjectSystem
 {
@@ -43,7 +43,6 @@ namespace BattleObjectSystem
             // These cases will need redefinition as restrictions develop.
             CanMove = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster);
             CanAttack = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster);
-
         }
 
         public void Move(Vector2Int direction)
@@ -67,6 +66,5 @@ namespace BattleObjectSystem
         {
             Debug.Log("Attacking " + target.Data.name + "!"); // TODO: Implement Something Here!
         }
-
     }
 }
