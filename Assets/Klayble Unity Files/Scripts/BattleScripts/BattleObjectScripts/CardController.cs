@@ -9,15 +9,19 @@ namespace BattleObjectSystem
     {
         [SerializeField, Header("Card Data")]
         private CardData m_CardData;
+
         public CardData CardData { get => m_CardData; private set => m_CardData = value; }
 
-        // + + + + + + + + + + | Methods | + + + + + + + + + + 
+        // + + + + + + + + + + | Methods | + + + + + + + + + +
 
         private void Awake()
         {
             BattleObject = BattleObject.Card;
-            CanMove = true;
-            CanAttack = true;
+
+            // Initialize BattlePermissions!
+            CanMove = new BattlePermission(true, true);
+            CanAttack = new BattlePermission(true, true);
+            CanInteract = new BattlePermission(false, false);
         }
 
         new private void Start()
@@ -79,6 +83,11 @@ namespace BattleObjectSystem
                 CardData.BattleStats.IsDead = true;
                 // TODO: Fade out or set death animation trigger here, make inactive after or something.
             }
+        }
+
+        public override void Interact(BattleController target)
+        {
+            Debug.Log("Cards cannot Interact!");
         }
     }
 }

@@ -17,7 +17,7 @@ namespace BattleObjectSystem
 
         [SerializeField, HideInInspector]
         protected BoardManager m_BoardManager;
-        
+
         public BoardManager BoardManager { get => m_BoardManager; protected set => m_BoardManager = value; }
 
         [SerializeField, HideInInspector]
@@ -26,17 +26,22 @@ namespace BattleObjectSystem
         public Vector2Int BoardPosition { get => m_BoardPosition; protected set => m_BoardPosition = value; }
 
         [SerializeField, HideInInspector]
-        protected bool m_CanMove;
-
-        public bool CanMove { get => m_CanMove; protected set => m_CanMove = value; }
-
-        [SerializeField, HideInInspector]
         protected bool m_IsMoving = false; // Used for animation and Moving
 
         [SerializeField, HideInInspector]
-        protected bool m_CanAttack;
+        protected BattlePermission m_CanMove;
 
-        public bool CanAttack { get => m_CanAttack; protected set => m_CanAttack = value; }
+        public BattlePermission CanMove { get => m_CanMove; protected set => m_CanMove = value; }
+
+        [SerializeField, HideInInspector]
+        protected BattlePermission m_CanAttack;
+
+        public BattlePermission CanAttack { get => m_CanAttack; protected set => m_CanAttack = value; }
+
+        [SerializeField, HideInInspector]
+        protected BattlePermission m_CanInteract;
+
+        public BattlePermission CanInteract { get => m_CanInteract; protected set => m_CanAttack = value; }
 
         // + + + + + + + + + + | Methods | + + + + + + + + + +
 
@@ -55,11 +60,11 @@ namespace BattleObjectSystem
             // Must invert the Y for Vector2Int constants because of BoardPosition / Array indexing style.
             direction.y *= -1;
             Vector2Int toBoardPosition = BoardPosition + direction;
-            if(CanMove)
+            if (CanMove.CanPerform)
             {
-                if(!m_IsMoving)
+                if (!m_IsMoving)
                 {
-                    if(BoardManager.GetTileAt(toBoardPosition.x, toBoardPosition.y) != null)
+                    if (BoardManager.GetTileAt(toBoardPosition.x, toBoardPosition.y) != null)
                     {
                         StartCoroutine(LerpWithDisplacement(direction));
                     }
@@ -77,7 +82,6 @@ namespace BattleObjectSystem
             {
                 Debug.Log("The type " + BattleObject + " cannot Move!");
             }
-
         }
 
         /// <summary>
@@ -119,12 +123,12 @@ namespace BattleObjectSystem
             BoardPosition = tileOn.ArrayLocation;
         }
 
-        public abstract void ChangeHP(int change);
-
         public abstract void Attack(BattleController target);
+
+        public abstract void ChangeHP(int change);
 
         public abstract void CheckIfDead();
 
-        // TODO: MIGHT CONSIDER a struct of boolean values that represents whether a BC can be [interacted] with or can [interact] with other things
+        public abstract void Interact(BattleController target);
     }
 }
