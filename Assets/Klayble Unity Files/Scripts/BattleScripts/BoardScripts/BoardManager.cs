@@ -135,7 +135,7 @@ namespace BoardSystem
             }
             catch (NullReferenceException)
             {
-                Debug.Log("Indices " + col + ", " + row + " have store no value.");
+                Debug.Log("Indices " + col + ", " + row + " store no value.");
                 return null;
             }
         }
