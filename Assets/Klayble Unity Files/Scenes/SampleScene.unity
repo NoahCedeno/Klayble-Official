@@ -872,16 +872,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 875886853}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97b124bd5a1016045b42d32551e43b3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 43fb9f3f23bbf69409b5ef1551e8dcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Data: {fileID: 11400000, guid: 7489fadcf80524c4da98132aa65d381a, type: 2}
   m_BattleObject: 0
   m_BoardManager: {fileID: 0}
   m_BoardPosition: {x: 0, y: 0}
   m_CanMove: 0
   m_IsMoving: 0
   m_CanAttack: 0
+  m_CardData: {fileID: 11400000, guid: 7489fadcf80524c4da98132aa65d381a, type: 2}
 --- !u!33 &875886856
 MeshFilter:
   m_ObjectHideFlags: 0

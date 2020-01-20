@@ -124,5 +124,7 @@ namespace BattleObjectSystem
         public abstract void Attack(BattleController target);
 
         public abstract void CheckIfDead();
+
+        // TODO: MIGHT CONSIDER a struct of boolean values that represents whether a BC can be [interacted] with or can [interact] with other things
     }
 }
