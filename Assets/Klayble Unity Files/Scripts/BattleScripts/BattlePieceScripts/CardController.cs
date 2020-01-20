@@ -31,8 +31,54 @@ namespace BattleObjectSystem
         /// <param name="target"></param>
         public override void Attack(BattleController target)
         {
-            throw new System.NotImplementedException();
+            target.ChangeHP(CardData.AttackData.BaseDamage);
         }
 
+        /// <summary>
+        /// Changes the Card's HP.
+        /// </summary>
+        /// <param name="change"></param>
+        public override void ChangeHP(int change)
+        {
+            // TODO: Call UI Method to change HP for this target :)
+
+            if (change > 0)
+            {
+                // If greater than max health,
+                if (CardData.BattleStats.CurrentHitPoints + change > CardData.BattleStats.TotalHitPoints)
+                {
+                    CardData.BattleStats.CurrentHitPoints = CardData.BattleStats.TotalHitPoints;
+                }
+            }
+            else if (change < 0)
+            {
+                // If less than 0 health,
+                if (CardData.BattleStats.CurrentHitPoints + change < 0)
+                {
+                    // Somehow Call Death here
+                    CardData.BattleStats.CurrentHitPoints = 0;
+                }
+            }
+            else
+            {
+                // If not dead and not max health,
+                CardData.BattleStats.CurrentHitPoints += change;
+            }
+
+            CheckIfDead();
+        }
+
+        /// <summary>
+        /// Mostly meant to check if dead or not.
+        /// </summary>
+        public override void CheckIfDead()
+        {
+            // If we're dead (HP == 0),
+            if (CardData.BattleStats.CurrentHitPoints == 0)
+            {
+                CardData.BattleStats.IsDead = true;
+                // TODO: Fade out or set death animation trigger here, make inactive after or something.
+            }
+        }
     }
 }

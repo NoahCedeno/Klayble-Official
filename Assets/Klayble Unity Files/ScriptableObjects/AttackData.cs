@@ -9,7 +9,7 @@ public class AttackData : ScriptableObject
     public Elementals ElementalType { get => m_ElementalType; private set => m_ElementalType = value; }
 
     [SerializeField]
-    private float m_BaseDamage;
+    private int m_BaseDamage;
 
-    public float BaseDamage { get => m_BaseDamage; private set => m_BaseDamage = value; }
+    public int BaseDamage { get => m_BaseDamage; private set => m_BaseDamage = value; }
 }

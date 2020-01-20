@@ -119,6 +119,10 @@ namespace BattleObjectSystem
             BoardPosition = tileOn.ArrayLocation;
         }
 
+        public abstract void ChangeHP(int change);
+
         public abstract void Attack(BattleController target);
+
+        public abstract void CheckIfDead();
     }
 }
