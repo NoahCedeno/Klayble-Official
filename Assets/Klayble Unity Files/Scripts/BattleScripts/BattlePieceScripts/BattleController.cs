@@ -1,4 +1,5 @@
 ﻿using BoardSystem;
+using System.Collections;
 using UnityEngine;
 
 namespace BattleObjectSystem
@@ -43,15 +44,50 @@ namespace BattleObjectSystem
             // These cases will need redefinition as restrictions develop.
             CanMove = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster);
             CanAttack = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster);
+
+            Move(new Vector2Int(5, 2));
         }
 
+        /// <summary>
+        /// Moves the GameObject with the help of an IEnumerator, ONLY if
+        /// the type of BattleObject can move, that is.
+        /// </summary>
+        /// <param name="direction"></param>
         public void Move(Vector2Int direction)
         {
             if (CanMove)
             {
-                BoardPosition += direction; // TODO: Time for an Animation / Lerp Thing!
+                // TODO: Start an animation here perhaps? Animator boolean thingie?
+                StartCoroutine(LerpToVector3(new Vector3(direction.x, 0.5f, direction.y)));
             }
         }
+
+        /// <summary>
+        /// A helper coroutine to lerp the GameObject to a Vector3.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        private IEnumerator LerpToVector3(Vector3 target)
+        {
+
+            float elapsedTime = 0f;
+            float waitTime = 2f;
+            Vector3 currentPos = transform.position;
+
+            while(elapsedTime < waitTime)
+            {
+                transform.position = Vector3.Lerp(currentPos, target, (elapsedTime / waitTime));
+                elapsedTime += Time.deltaTime;
+
+                yield return null;
+            }
+
+            transform.position = target;
+
+            yield return null;
+        }
+
+
 
         /// <summary>
         /// Updates the Board Position according to a TileController's,
