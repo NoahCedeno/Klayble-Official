@@ -8,66 +8,41 @@ namespace BattleObjectSystem
     /// Planned to be the base class for my more specific scripts.
     /// </summary>
     [DisallowMultipleComponent]
-    public class BattleController : MonoBehaviour
+    public abstract class BattleController : MonoBehaviour
     {
-        [SerializeField, Header("Battle Object Data")]
-        private BattleData m_Data;
+        [SerializeField, HideInInspector]
+        protected BattleObject m_BattleObject;
 
-        public BattleData Data { get => m_Data; private set => m_Data = value; }
+        public BattleObject BattleObject { get => m_BattleObject; protected set => m_BattleObject = value; }
 
         [SerializeField, HideInInspector]
-        private BattleObject m_BattleObject;
-
-        public BattleObject BattleObject { get => m_BattleObject; private set => m_BattleObject = value; }
-
-        [SerializeField, HideInInspector]
-        private BoardManager m_BoardManager;
+        protected BoardManager m_BoardManager;
         
-        public BoardManager BoardManager { get => m_BoardManager; private set => m_BoardManager = value; }
+        public BoardManager BoardManager { get => m_BoardManager; protected set => m_BoardManager = value; }
 
-        [SerializeField]
+        [SerializeField, HideInInspector]
         protected Vector2Int m_BoardPosition;
 
-        public Vector2Int BoardPosition { get => m_BoardPosition; private set => m_BoardPosition = value; }
-
-        [SerializeField]
-        private bool m_CanMove;
-
-        public bool CanMove { get => m_CanMove; private set => m_CanMove = value; }
+        public Vector2Int BoardPosition { get => m_BoardPosition; protected set => m_BoardPosition = value; }
 
         [SerializeField, HideInInspector]
-        private bool m_IsMoving; // Used for animation and Moving
+        protected bool m_CanMove;
 
-        [SerializeField]
-        private bool m_CanAttack;
+        public bool CanMove { get => m_CanMove; protected set => m_CanMove = value; }
 
-        public bool CanAttack { get => m_CanAttack; private set => m_CanAttack = value; }
+        [SerializeField, HideInInspector]
+        protected bool m_IsMoving = false; // Used for animation and Moving
+
+        [SerializeField, HideInInspector]
+        protected bool m_CanAttack;
+
+        public bool CanAttack { get => m_CanAttack; protected set => m_CanAttack = value; }
 
         // + + + + + + + + + + | Methods | + + + + + + + + + +
 
-        private void Awake()
-        {
-            BattleObject = Data.BattleObject;
-
-            // TODO: These cases will need redefinition as restrictions develop.
-            CanMove = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster);
-            CanAttack = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster);
-
-            m_IsMoving = false;
-
-        }
-
-        private void Start()
+        protected void Start()
         {
             BoardManager = GameObject.Find("Board").GetComponent<BoardManager>();
-        }
-
-        private void Update()
-        {
-            if (!m_IsMoving)
-            {
-                Move(Vector2Int.right);
-            }
         }
 
         /// <summary>
@@ -144,9 +119,6 @@ namespace BattleObjectSystem
             BoardPosition = tileOn.ArrayLocation;
         }
 
-        public void Attack(BattleController target)
-        {
-            Debug.Log("Attacking " + target.Data.name + "!"); // TODO: Implement Something Here!
-        }
+        public abstract void Attack(BattleController target);
     }
 }
