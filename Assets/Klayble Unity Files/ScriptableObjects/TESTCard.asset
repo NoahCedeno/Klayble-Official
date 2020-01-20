@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84780a6f92248e4580c6e743340f224, type: 3}
   m_Name: TESTCard
   m_EditorClassIdentifier: 
-  m_CardId: 88
   m_Level: 50
-  m_HitPoints: 900
-  m_Attack: 1800
-  m_Defense: 2
-  m_CardName: Chris
+  m_BattleStats: {fileID: 11400000, guid: 80b6a04e10aa9d24cb9bc56c4d3dc620, type: 2}
+  m_BattleObject: 0
+  m_CardId: 88
+  m_AttackData: {fileID: 11400000, guid: 3e745f5ebbcfc69439eb75e49770665a, type: 2}

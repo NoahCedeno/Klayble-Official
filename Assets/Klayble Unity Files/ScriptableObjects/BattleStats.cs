@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "BattleStatsData", menuName = "ScriptableObjects/BattleStatsData", order = 1)]
+[CreateAssetMenu(fileName = "BattleStats", menuName = "ScriptableObjects/BattleStats", order = 1)]
 public class BattleStats : ScriptableObject
 {
     [SerializeField]
