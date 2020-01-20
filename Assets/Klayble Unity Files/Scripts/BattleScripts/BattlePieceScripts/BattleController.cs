@@ -10,7 +10,7 @@ namespace BattleObjectSystem
     [DisallowMultipleComponent]
     public class BattleController : MonoBehaviour
     {
-        [SerializeField]
+        [SerializeField, Header("Battle Object Data")]
         private BattleData m_Data;
 
         public BattleData Data { get => m_Data; private set => m_Data = value; }
@@ -44,8 +44,6 @@ namespace BattleObjectSystem
             // These cases will need redefinition as restrictions develop.
             CanMove = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster);
             CanAttack = (BattleObject == BattleObject.Card || BattleObject == BattleObject.DeckMaster);
-
-            Move(new Vector2Int(5, 2));
         }
 
         /// <summary>

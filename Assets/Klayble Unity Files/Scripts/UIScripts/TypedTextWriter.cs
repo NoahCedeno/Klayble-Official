@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class TypedTextWriter : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField, TextArea]
     private string m_TextToWrite;
 
     public string TextToWrite { get => m_TextToWrite; set => m_TextToWrite = value; }

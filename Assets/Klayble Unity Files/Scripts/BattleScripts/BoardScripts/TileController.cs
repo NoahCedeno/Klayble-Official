@@ -14,32 +14,11 @@ namespace BoardSystem
 
         public Tile Tile { get => m_Tile; private set => m_Tile = value; }
 
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private bool IsLocationSet = false; // Useful to save this so no redefinition!
 
         [SerializeField, HideInInspector]
         private Vector2Int m_ArrayLocation;
-
-        [SerializeField]
-        private Adjacents m_Adjacents;
-
-        public Adjacents Adjacents { get => m_Adjacents; set => m_Adjacents = value; }
-
-        [SerializeField]
-        private BoxCollider OnTileCollider;
-
-        [SerializeField] // TODO: Not sure if I save this
-        public GameObject ObjectOn;
-
-        // + + + + + + + + + + | Methods | + + + + + + + + + +
-
-        private void Awake()
-        {
-            OnTileCollider = gameObject.GetComponent<BoxCollider>();
-            OnTileCollider.enabled = true;
-
-            Adjacents = new Adjacents(false, false, false, false); // Initialized as false, checked in BoardManager.DefineAdjacents()
-        }
 
         public Vector2Int ArrayLocation
         {
@@ -61,6 +40,27 @@ namespace BoardSystem
 
         [SerializeField]
         private LayerMask m_BattleFieldLayerMask;
+
+        [SerializeField]
+        private Adjacents m_Adjacents;
+
+        public Adjacents Adjacents { get => m_Adjacents; set => m_Adjacents = value; }
+
+        [SerializeField, HideInInspector]
+        private BoxCollider OnTileCollider;
+
+        [SerializeField] // TODO: Not sure if I save this
+        public GameObject ObjectOn;
+
+        // + + + + + + + + + + | Methods | + + + + + + + + + +
+
+        private void Awake()
+        {
+            OnTileCollider = gameObject.GetComponent<BoxCollider>();
+            OnTileCollider.enabled = true;
+
+            Adjacents = new Adjacents(false, false, false, false); // Initialized as false, checked in BoardManager.DefineAdjacents()
+        }
 
         /// <summary>
         /// Returns the location of the Tile in World Space!
