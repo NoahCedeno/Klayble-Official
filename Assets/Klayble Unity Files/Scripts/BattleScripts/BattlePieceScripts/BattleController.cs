@@ -69,12 +69,11 @@ namespace BattleObjectSystem
         /// <returns></returns>
         private IEnumerator LerpToVector3(Vector3 target)
         {
-
             float elapsedTime = 0f;
             float waitTime = 2f;
             Vector3 currentPos = transform.position;
 
-            while(elapsedTime < waitTime)
+            while (elapsedTime < waitTime)
             {
                 transform.position = Vector3.Lerp(currentPos, target, (elapsedTime / waitTime));
                 elapsedTime += Time.deltaTime;
@@ -86,8 +85,6 @@ namespace BattleObjectSystem
 
             yield return null;
         }
-
-
 
         /// <summary>
         /// Updates the Board Position according to a TileController's,
