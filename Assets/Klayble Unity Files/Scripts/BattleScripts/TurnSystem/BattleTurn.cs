@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TurnSystem
 {
-    public abstract class BattleTurn
+    public abstract class BattleTurn : ITurn
     {
         [SerializeField]
         protected BattleController m_User;
@@ -26,5 +26,33 @@ namespace TurnSystem
             Target = target;
             Action = action;
         }
+
+        // + + + + + + + + + + | Methods | + + + + + + + + + +
+
+        public abstract void ExecuteAction();
+
+        /// <summary>
+        /// Checks, for any BattleAction type of the BattleTurn, whether the members
+        /// are able to perform such an action.
+        /// </summary>
+        /// <returns>Whether the User and Target are capable of the action.</returns>
+        public abstract bool IsMoveValid();
+
+        /* Copy cases to other implementations.
+        {
+            if (Action == BattleAction.Attack)
+            {
+                return (User.CanAttack.CanPerform && Target.CanAttack.CanReceive);
+            }
+            else if (Action == BattleAction.Interact)
+            {
+                return (User.CanInteract.CanPerform && Target.CanInteract.CanReceive);
+            }
+            else
+            {
+                Debug.Log("This move isn't legal!");
+                return false;
+            }
+        } */
     }
 }
